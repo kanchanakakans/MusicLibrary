@@ -36,7 +36,19 @@
             android:layout_marginLeft="25dp"
             android:layout_toEndOf="@id/tv_play"
             android:background="@color/color_ash"
-            android:text=">>"
+            android:text="F"
+            android:textAlignment="center"
+            android:textSize="30dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_nexttrack"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="25dp"
+            android:layout_toEndOf="@id/tv_ff"
+            android:background="@color/color_ash"
+            android:text="N"
             android:textAlignment="center"
             android:textSize="30dp"
             android:textStyle="bold" />
@@ -48,9 +60,22 @@
             android:layout_marginRight="25dp"
             android:layout_toLeftOf="@id/tv_play"
             android:background="@color/color_ash"
-            android:text="<<"
+            android:text="B"
             android:textAlignment="center"
             android:textSize="30dp"
             android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_prevtrack"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="25dp"
+            android:layout_toLeftOf="@id/tv_bb"
+            android:background="@color/color_ash"
+            android:text="P"
+            android:textAlignment="center"
+            android:textSize="30dp"
+            android:textStyle="bold" />
+
     </RelativeLayout>
 </RelativeLayout>

@@ -15,17 +15,23 @@ import java.util.ArrayList;
 
 import musicplayer.project.kanchan.musicplayer.Model.SongInfo;
 import musicplayer.project.kanchan.musicplayer.R;
+import musicplayer.project.kanchan.musicplayer.Util.Util;
 
 public class MusicPlayerDetails extends Activity implements View.OnClickListener {
     private ArrayList<SongInfo> songlist;
     private int selectedpos;
     public static MediaPlayer mediaPlayer;
-    private TextView tv_play, tv_ff, tv_bb,tv_nexttrack,tv_prevtrack;
+    private TextView tv_play, tv_ff, tv_bb, tv_nexttrack, tv_prevtrack;
     private SeekBar sb_seek;
 
     @Override
     protected void onStart() {
         super.onStart();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
     }
 
     @Override
@@ -44,7 +50,7 @@ public class MusicPlayerDetails extends Activity implements View.OnClickListener
         songlist = (ArrayList) b.getParcelableArrayList("songlist");
         selectedpos = b.getInt("pos");
         initView();
-        initiatingMediaPlayer();
+        initiatingMediaPlayer(selectedpos);
 
 
     }
@@ -69,14 +75,26 @@ public class MusicPlayerDetails extends Activity implements View.OnClickListener
 
     }
 
-    private void initiatingMediaPlayer() {
-        if(mediaPlayer!=null){
+    private void initiatingMediaPlayer(final int selected_position) {
+        if (mediaPlayer != null) {
             mediaPlayer.stop();
             mediaPlayer.release();
         }
-        Uri mediapath = Uri.parse(songlist.get(selectedpos).song_path);
+        Uri mediapath = Uri.parse(songlist.get(selected_position).song_path);
         mediaPlayer = MediaPlayer.create(getApplicationContext(), mediapath);
         mediaPlayer.start();
+        mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                if (selected_position < songlist.size()) {
+                    initiatingMediaPlayer(selected_position + 1);
+                } else {
+                    Util.showLog("CheckStopEnd", "Media Player end");
+
+                }
+
+            }
+        });
     }
 
     @Override
@@ -98,16 +116,12 @@ public class MusicPlayerDetails extends Activity implements View.OnClickListener
                 mediaPlayer.seekTo(mediaPlayer.getCurrentPosition() + 5000);
                 break;
             case R.id.tv_nexttrack:
-                mediaPlayer.stop();
-                mediaPlayer.release();
-                selectedpos = (selectedpos+1)%songlist.size(); // When Last Track Played it will Return to First Track
-                initiatingMediaPlayer();
+                selectedpos = (selectedpos + 1) % songlist.size(); // When Last Track Played it will Return to First Track
+                initiatingMediaPlayer(selectedpos);
                 break;
             case R.id.tv_prevtrack:
-                mediaPlayer.stop();
-                mediaPlayer.release();
-                selectedpos = (selectedpos-1<0)? songlist.size()-1:selectedpos-1;
-                initiatingMediaPlayer();
+                selectedpos = (selectedpos - 1 < 0) ? songlist.size() - 1 : selectedpos - 1;
+                initiatingMediaPlayer(selectedpos);
                 break;
         }
     }

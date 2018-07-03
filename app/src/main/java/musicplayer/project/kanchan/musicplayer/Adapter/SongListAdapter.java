@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import musicplayer.project.kanchan.musicplayer.Model.SongInfo;
 import musicplayer.project.kanchan.musicplayer.R;
 import musicplayer.project.kanchan.musicplayer.Util.IactiononClick;
+import musicplayer.project.kanchan.musicplayer.Util.Util;
 
 public class SongListAdapter extends RecyclerView.Adapter<SongListAdapter.ViewHolder> {
     private LayoutInflater layoutInflater;
@@ -44,7 +45,10 @@ public class SongListAdapter extends RecyclerView.Adapter<SongListAdapter.ViewHo
             @Override
             public void onClick(View v) {
                 if(iactiononClick!=null){
+                    Util.showLog("CheckDurarion", String.valueOf(songlistArray.get(position).song_duration));
+
                     iactiononClick.OnActionClick(position);
+
                 }
             }
         });

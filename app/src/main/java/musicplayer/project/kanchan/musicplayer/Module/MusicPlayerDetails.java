@@ -13,10 +13,11 @@ import android.widget.TextView;
 import java.io.File;
 import java.util.ArrayList;
 
+import musicplayer.project.kanchan.musicplayer.Model.SongInfo;
 import musicplayer.project.kanchan.musicplayer.R;
 
 public class MusicPlayerDetails extends Activity implements View.OnClickListener {
-    private ArrayList<File> songlist;
+    private ArrayList<SongInfo> songlist;
     private int selectedpos;
     public static MediaPlayer mediaPlayer;
     private TextView tv_play, tv_ff, tv_bb,tv_nexttrack,tv_prevtrack;
@@ -73,7 +74,7 @@ public class MusicPlayerDetails extends Activity implements View.OnClickListener
             mediaPlayer.stop();
             mediaPlayer.release();
         }
-        Uri mediapath = Uri.parse(songlist.get(selectedpos).toString());
+        Uri mediapath = Uri.parse(songlist.get(selectedpos).song_path);
         mediaPlayer = MediaPlayer.create(getApplicationContext(), mediapath);
         mediaPlayer.start();
     }

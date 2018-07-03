@@ -12,16 +12,17 @@ import android.widget.TextView;
 import java.io.File;
 import java.util.ArrayList;
 
+import musicplayer.project.kanchan.musicplayer.Model.SongInfo;
 import musicplayer.project.kanchan.musicplayer.R;
 import musicplayer.project.kanchan.musicplayer.Util.IactiononClick;
 
 public class SongListAdapter extends RecyclerView.Adapter<SongListAdapter.ViewHolder> {
     private LayoutInflater layoutInflater;
     private Context context;
-    private ArrayList<File> songlistArray;
+    private ArrayList<SongInfo> songlistArray;
     private IactiononClick iactiononClick;
 
-    public SongListAdapter(Context context, ArrayList<File> songlistArray,IactiononClick iactiononClick) {
+    public SongListAdapter(Context context, ArrayList<SongInfo> songlistArray, IactiononClick iactiononClick) {
         this.context = context;
         this.layoutInflater = LayoutInflater.from(context);
         this.songlistArray = songlistArray;
@@ -38,7 +39,7 @@ public class SongListAdapter extends RecyclerView.Adapter<SongListAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
-        holder.tv_songname.setText(songlistArray.get(position).getName());
+        holder.tv_songname.setText(songlistArray.get(position).song_name);
         holder.view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

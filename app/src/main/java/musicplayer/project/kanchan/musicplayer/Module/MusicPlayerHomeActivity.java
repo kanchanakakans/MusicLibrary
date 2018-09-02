@@ -17,6 +17,8 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.TextView;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -32,7 +34,7 @@ public class MusicPlayerHomeActivity extends Activity implements IactiononClick 
     private RecyclerView.LayoutManager layoutManager;
     private ArrayList<File> songlist;
     private ArrayList<SongInfo>songInfoList;
-
+    private TextView tv_clickme;
 
     @Override
     protected void onPause() {
@@ -77,7 +79,14 @@ public class MusicPlayerHomeActivity extends Activity implements IactiononClick 
     }
 
     private void initView() {
+        tv_clickme = (TextView)findViewById(R.id.tv_clickme);
         rv_songlist = (RecyclerView)findViewById(R.id.rv_songlist);
+        tv_clickme.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NotificationGenerator.CustomMediaNotification(getApplicationContext());
+            }
+        });
     }
 
     public void setAdapter(){

@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -21,8 +22,9 @@ public class MusicPlayerDetails extends Activity implements View.OnClickListener
     private ArrayList<SongInfo> songlist;
     private int selectedpos;
     public static MediaPlayer mediaPlayer;
-    private TextView tv_play, tv_ff, tv_bb, tv_nexttrack, tv_prevtrack;
+    private ImageView tv_play, tv_ff, tv_bb, tv_nexttrack, tv_prevtrack;
     private SeekBar sb_seek;
+
 
     @Override
     protected void onStart() {
@@ -33,6 +35,7 @@ public class MusicPlayerDetails extends Activity implements View.OnClickListener
     protected void onResume() {
         super.onResume();
     }
+
 
     @Override
     protected void onPause() {
@@ -56,13 +59,12 @@ public class MusicPlayerDetails extends Activity implements View.OnClickListener
     }
 
     private void initView() {
-        tv_play = (TextView) findViewById(R.id.tv_play);
-        tv_bb = (TextView) findViewById(R.id.tv_bb);
-        tv_ff = (TextView) findViewById(R.id.tv_ff);
-        tv_prevtrack = (TextView) findViewById(R.id.tv_prevtrack);
-        tv_nexttrack = (TextView) findViewById(R.id.tv_nexttrack);
+        tv_play = (ImageView) findViewById(R.id.tv_play);
+        tv_bb = (ImageView) findViewById(R.id.tv_bb);
+        tv_ff = (ImageView) findViewById(R.id.tv_ff);
+        tv_prevtrack = (ImageView) findViewById(R.id.tv_prevtrack);
+        tv_nexttrack = (ImageView) findViewById(R.id.tv_nexttrack);
         sb_seek = (SeekBar) findViewById(R.id.sb_seek);
-
         SetClickListener();
     }
 
@@ -72,6 +74,7 @@ public class MusicPlayerDetails extends Activity implements View.OnClickListener
         tv_ff.setOnClickListener(this);
         tv_prevtrack.setOnClickListener(this);
         tv_nexttrack.setOnClickListener(this);
+
 
     }
 
@@ -83,6 +86,7 @@ public class MusicPlayerDetails extends Activity implements View.OnClickListener
         Uri mediapath = Uri.parse(songlist.get(selected_position).song_path);
         mediaPlayer = MediaPlayer.create(getApplicationContext(), mediapath);
         mediaPlayer.start();
+        tv_play.setImageResource(R.drawable.icn_music_pause);
         mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mp) {
@@ -102,10 +106,10 @@ public class MusicPlayerDetails extends Activity implements View.OnClickListener
         switch (v.getId()) {
             case R.id.tv_play:
                 if (!mediaPlayer.isPlaying()) {
-                    tv_play.setText(">");
+                    tv_play.setImageResource(R.drawable.icn_music_pause);
                     mediaPlayer.start();
                 } else {
-                    tv_play.setText("||");
+                    tv_play.setImageResource(R.drawable.icn_play);
                     mediaPlayer.pause();
                 }
                 break;
@@ -123,6 +127,7 @@ public class MusicPlayerDetails extends Activity implements View.OnClickListener
                 selectedpos = (selectedpos - 1 < 0) ? songlist.size() - 1 : selectedpos - 1;
                 initiatingMediaPlayer(selectedpos);
                 break;
+
         }
     }
 }

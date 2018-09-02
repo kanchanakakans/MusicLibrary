@@ -10,13 +10,21 @@
         android:text="My Song"
         android:textAlignment="center"
         android:textSize="20sp" />
+    <TextView
+        android:id="@+id/tv_clickme"
+        android:layout_below="@id/tv_headertxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Click Me"
+        android:padding="15dp"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_songlist"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tv_headertxt">
+        android:layout_below="@id/tv_clickme">
 
     </android.support.v7.widget.RecyclerView>
+
 
 </RelativeLayout>

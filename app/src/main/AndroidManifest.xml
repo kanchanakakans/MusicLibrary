@@ -19,6 +19,15 @@
         </activity>
         <activity android:name=".Module.MusicPlayerHomeActivity"/>
         <activity android:name=".Module.MusicPlayerDetails"/>
+        <receiver android:name=".Module.NotificationBroadcast" >
+            <intent-filter>
+                <action android:name="musicplayer.project.kanchan.musicplayer.previous" />
+                <action android:name="musicplayer.project.kanchan.musicplayer.delete" />
+                <action android:name="musicplayer.project.kanchan.musicplayer.pause" />
+                <action android:name="musicplayer.project.kanchan.musicplayer.next" />
+                <action android:name="musicplayer.project.kanchan.musicplayer.play" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

@@ -10,6 +10,13 @@ public class NotificationBroadcast extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         if (intent.getAction().equals(NotificationGenerator.NOTIFY_PLAY)){
             Toast.makeText(context, "NOTIFY_PLAY", Toast.LENGTH_LONG).show();
+            if(MusicPlayerDetails.mediaPlayer != null){
+                if(!MusicPlayerDetails.mediaPlayer.isPlaying()){
+                    MusicPlayerDetails.mediaPlayer.start();
+                }else {
+                    MusicPlayerDetails.mediaPlayer.pause();
+                }
+            }
         } else if (intent.getAction().equals(NotificationGenerator.NOTIFY_PAUSE)){
             Toast.makeText(context, "NOTIFY_PAUSE", Toast.LENGTH_LONG).show();
         }else if (intent.getAction().equals(NotificationGenerator.NOTIFY_NEXT)){

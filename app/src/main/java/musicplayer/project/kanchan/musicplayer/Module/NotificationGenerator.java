@@ -15,6 +15,9 @@ public class NotificationGenerator {
     public static final String NOTIFY_PAUSE = "musicplayer.project.kanchan.musicplayer.pause";
     public static final String NOTIFY_PLAY = "musicplayer.project.kanchan.musicplayer.play";
     public static final String NOTIFY_NEXT = "musicplayer.project.kanchan.musicplayer.next";
+    private static final int NOTIFICATION_ID_CUSTOM_BIG = 9;
+
+
     public static void CustomMediaNotification(Context context){
         // Creating the remote Views
         RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.activity_localnotification);
@@ -33,6 +36,7 @@ public class NotificationGenerator {
 
         // Setting the Audio Action Listener
         setlistener(remoteViews,context);
+        notificationManager.notify(NOTIFICATION_ID_CUSTOM_BIG, builder.build());
     }
 
     private static void setlistener(RemoteViews remoteViews, Context context) {

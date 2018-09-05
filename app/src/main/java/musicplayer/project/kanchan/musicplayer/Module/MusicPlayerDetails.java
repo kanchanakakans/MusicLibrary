@@ -6,6 +6,7 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.ContextMenu;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.SeekBar;
@@ -40,8 +41,15 @@ public class MusicPlayerDetails extends Activity implements View.OnClickListener
     @Override
     protected void onPause() {
         super.onPause();
+        NotificationGenerator.CustomMediaNotification(getApplicationContext());
 
 
+
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
     }
 
     @Override

@@ -34,7 +34,6 @@ public class MusicPlayerHomeActivity extends Activity implements IactiononClick 
     private RecyclerView.LayoutManager layoutManager;
     private ArrayList<File> songlist;
     private ArrayList<SongInfo>songInfoList;
-    private TextView tv_clickme;
 
     @Override
     protected void onPause() {
@@ -79,14 +78,8 @@ public class MusicPlayerHomeActivity extends Activity implements IactiononClick 
     }
 
     private void initView() {
-        tv_clickme = (TextView)findViewById(R.id.tv_clickme);
         rv_songlist = (RecyclerView)findViewById(R.id.rv_songlist);
-        tv_clickme.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                NotificationGenerator.CustomMediaNotification(getApplicationContext());
-            }
-        });
+
     }
 
     public void setAdapter(){
